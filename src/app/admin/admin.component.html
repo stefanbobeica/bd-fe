@@ -1,0 +1,634 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <h1>INSERT</h1>
+
+      <formio
+        [form]="{
+          display: 'form',
+          components: [
+            {
+              label: 'Selectati tabelul:',
+              widget: 'choicesjs',
+              tableView: true,
+              data: {
+                values: [
+                  {
+                    label: 'Antrenor',
+                    value: 'antrenorI'
+                  },
+                  {
+                    label: 'Jucator',
+                    value: 'jucatorI'
+                  }
+                ]
+              },
+              key: 'selectatiTabelul',
+              type: 'select',
+              input: true
+            },
+            {
+              type: 'button',
+              label: 'Selectati',
+              key: 'submit',
+              disableOnInvalid: true,
+              input: true,
+              tableView: false
+            }
+          ]
+        }"
+        (submit)="onSelect($event)"
+      ></formio>
+      <div *ngIf="selectatiTabelul == 'antrenorI'">
+        <formio
+          [form]="{
+            display: 'form',
+            components: [
+              {
+                label: 'Nume antenor',
+                tableView: true,
+                key: 'numeAntrenor',
+                type: 'textfield',
+                input: true
+              },
+              {
+                label: 'Data nastere antrenor',
+                tableView: false,
+                datePicker: {
+                  disableWeekends: false,
+                  disableWeekdays: false
+                },
+                enableMinDateInput: false,
+                enableMaxDateInput: false,
+                key: 'dataNastere',
+                type: 'datetime',
+                input: true,
+                widget: {
+                  type: 'calendar',
+                  displayInTimezone: 'viewer',
+                  locale: 'en',
+                  useLocaleSettings: false,
+                  allowInput: true,
+                  mode: 'single',
+                  enableTime: true,
+                  noCalendar: false,
+                  format: 'yyyy-MM-dd hh:mm a',
+                  hourIncrement: 1,
+                  minuteIncrement: 1,
+                  time_24hr: false,
+                  minDate: null,
+                  disableWeekends: false,
+                  disableWeekdays: false,
+                  maxDate: null
+                }
+              },
+              {
+                type: 'button',
+                label: 'Insert',
+                key: 'submit',
+                disableOnInvalid: true,
+                input: true,
+                tableView: false
+              }
+            ]
+          }"
+          (submit)="onSubmitAntrenor($event)"
+        ></formio>
+      </div>
+      <div *ngIf="selectatiTabelul == 'jucatorI'">
+        <formio
+          [form]="{
+            display: 'form',
+
+            components: [
+              {
+                label: 'Nume jucator',
+                tableView: true,
+                key: 'numeJucator',
+                type: 'textfield',
+                input: true
+              },
+              {
+                label: 'Data nastere',
+                tableView: false,
+                datePicker: {
+                  disableWeekends: false,
+                  disableWeekdays: false
+                },
+                enableMinDateInput: false,
+                enableMaxDateInput: false,
+                key: 'dataNastere',
+                type: 'datetime',
+                input: true,
+                widget: {
+                  type: 'calendar',
+                  displayInTimezone: 'viewer',
+                  locale: 'en',
+                  useLocaleSettings: false,
+                  allowInput: true,
+                  mode: 'single',
+                  enableTime: true,
+                  noCalendar: false,
+                  format: 'yyyy-MM-dd hh:mm a',
+                  hourIncrement: 1,
+                  minuteIncrement: 1,
+                  time_24hr: false,
+                  minDate: null,
+                  disableWeekends: false,
+                  disableWeekdays: false,
+                  maxDate: null
+                }
+              },
+              {
+                label: 'Pozitie',
+                widget: 'choicesjs',
+                tableView: true,
+                data: {
+                  values: [
+                    {
+                      label: 'GK',
+                      value: 'GK'
+                    },
+                    {
+                      label: 'CB',
+                      value: 'CB'
+                    },
+                    {
+                      label: 'LB',
+                      value: 'LB'
+                    },
+                    {
+                      label: 'RB',
+                      value: 'RB'
+                    },
+                    {
+                      label: 'CB',
+                      value: 'CB'
+                    },
+                    {
+                      label: 'CM',
+                      value: 'CM'
+                    },
+                    {
+                      label: 'RM',
+                      value: 'RM'
+                    },
+                    {
+                      label: 'LM',
+                      value: 'LM'
+                    },
+                    {
+                      label: 'RW',
+                      value: 'RW'
+                    },
+                    {
+                      label: 'LW',
+                      value: 'LW'
+                    },
+                    {
+                      label: 'ST',
+                      value: 'ST'
+                    }
+                  ]
+                },
+                key: 'pozitie',
+                type: 'select',
+                input: true
+              },
+              {
+                label: 'Echipa nationala',
+                widget: 'choicesjs',
+                tableView: true,
+                data: {
+                  values: [
+                    {
+                      label: 'Romania',
+                      value: '1'
+                    },
+                    {
+                      label: 'Franta',
+                      value: '2'
+                    },
+                    {
+                      label: 'Anglia ',
+                      value: '3'
+                    },
+                    {
+                      label: 'Germania ',
+                      value: '4'
+                    },
+                    {
+                      label: 'Spania ',
+                      value: '5'
+                    },
+                    {
+                      label: 'Brazilia ',
+                      value: '6'
+                    },
+                    {
+                      label: 'Argentina',
+                      value: '7'
+                    },
+                    {
+                      label: 'Belgia ',
+                      value: '8'
+                    },
+                    {
+                      label: 'Olanda ',
+                      value: '9'
+                    },
+                    {
+                      label: 'Portugalia ',
+                      value: '10'
+                    }
+                  ]
+                },
+                key: 'echipaNationala',
+                type: 'select',
+                input: true
+              },
+              {
+                type: 'button',
+                label: 'Insert',
+                key: 'submit',
+                disableOnInvalid: true,
+                input: true,
+                tableView: false
+              }
+            ]
+          }"
+          (submit)="onSubmitJucator($event)"
+        ></formio>
+      </div>
+    </div>
+    <div class="col-sm">
+      <h1>UPDATE</h1>
+      <formio
+        [form]="{
+          display: 'form',
+          components: [
+            {
+              label: 'Selectati tabelul:',
+              widget: 'choicesjs',
+              tableView: true,
+              data: {
+                values: [
+                  {
+                    label: 'Antrenor',
+                    value: 'antrenorU'
+                  },
+                  {
+                    label: 'Jucator',
+                    value: 'jucatorU'
+                  }
+                ]
+              },
+              key: 'selectatiTabelul',
+              type: 'select',
+              input: true
+            },
+            {
+              type: 'button',
+              label: 'Selectati',
+              key: 'submit',
+              disableOnInvalid: true,
+              input: true,
+              tableView: false
+            }
+          ]
+        }"
+        (submit)="onSelect($event)"
+        
+      ></formio>
+      
+      <div *ngIf="selectatiTabelul == 'antrenorU'">
+        <formio
+          [form]="{
+            display: 'form',
+            components: [
+              {
+                label: 'Nume vechi antrenor',
+                tableView: true,
+                key: 'numeAntrenor',
+                type: 'textfield',
+                input: true
+              },
+
+              {
+                label: 'Nume nou antrenor',
+                tableView: true,
+                key: 'numeNouAntrenor',
+                type: 'textfield',
+                input: true
+              },
+              {
+                label: 'Data nastere antrenor',
+                tableView: false,
+                datePicker: {
+                  disableWeekends: false,
+                  disableWeekdays: false
+                },
+                enableMinDateInput: false,
+                enableMaxDateInput: false,
+                key: 'dataNastere',
+                type: 'datetime',
+                input: true,
+                widget: {
+                  type: 'calendar',
+                  displayInTimezone: 'viewer',
+                  locale: 'en',
+                  useLocaleSettings: false,
+                  allowInput: true,
+                  mode: 'single',
+                  enableTime: true,
+                  noCalendar: false,
+                  format: 'yyyy-MM-dd hh:mm a',
+                  hourIncrement: 1,
+                  minuteIncrement: 1,
+                  time_24hr: false,
+                  minDate: null,
+                  disableWeekends: false,
+                  disableWeekdays: false,
+                  maxDate: null
+                }
+              },
+              {
+                type: 'button',
+                label: 'Insert',
+                key: 'submit',
+                disableOnInvalid: true,
+                input: true,
+                tableView: false
+              }
+            ]
+          }"
+          (submit)="onUpdateAntrenor($event)"
+        ></formio>
+      </div>
+      <div *ngIf="selectatiTabelul == 'jucatorU'">
+        <formio
+          [form]="{
+            display: 'form',
+
+            components: [
+              {
+                label: 'Nume jucator',
+                tableView: true,
+                key: 'numeJucator',
+                type: 'textfield',
+                input: true
+              },
+              {
+                label: 'Nume nou jucator',
+                tableView: true,
+                key: 'numeNouJucator',
+                type: 'textfield',
+                input: true
+              },
+              {
+                label: 'Data nastere',
+                tableView: false,
+                datePicker: {
+                  disableWeekends: false,
+                  disableWeekdays: false
+                },
+                enableMinDateInput: false,
+                enableMaxDateInput: false,
+                key: 'dataNastere',
+                type: 'datetime',
+                input: true,
+                widget: {
+                  type: 'calendar',
+                  displayInTimezone: 'viewer',
+                  locale: 'en',
+                  useLocaleSettings: false,
+                  allowInput: true,
+                  mode: 'single',
+                  enableTime: true,
+                  noCalendar: false,
+                  format: 'yyyy-MM-dd hh:mm a',
+                  hourIncrement: 1,
+                  minuteIncrement: 1,
+                  time_24hr: false,
+                  minDate: null,
+                  disableWeekends: false,
+                  disableWeekdays: false,
+                  maxDate: null
+                }
+              },
+              {
+                label: 'Pozitie',
+                widget: 'choicesjs',
+                tableView: true,
+                data: {
+                  values: [
+                    {
+                      label: 'GK',
+                      value: 'GK'
+                    },
+                    {
+                      label: 'CB',
+                      value: 'CB'
+                    },
+                    {
+                      label: 'LB',
+                      value: 'LB'
+                    },
+                    {
+                      label: 'RB',
+                      value: 'RB'
+                    },
+                    {
+                      label: 'CB',
+                      value: 'CB'
+                    },
+                    {
+                      label: 'CM',
+                      value: 'CM'
+                    },
+                    {
+                      label: 'RM',
+                      value: 'RM'
+                    },
+                    {
+                      label: 'LM',
+                      value: 'LM'
+                    },
+                    {
+                      label: 'RW',
+                      value: 'RW'
+                    },
+                    {
+                      label: 'LW',
+                      value: 'LW'
+                    },
+                    {
+                      label: 'ST',
+                      value: 'ST'
+                    }
+                  ]
+                },
+                key: 'pozitie',
+                type: 'select',
+                input: true
+              },
+              {
+                label: 'Echipa nationala',
+                widget: 'choicesjs',
+                tableView: true,
+                data: {
+                  values: [
+                    {
+                      label: 'Romania',
+                      value: '1'
+                    },
+                    {
+                      label: 'Franta',
+                      value: '2'
+                    },
+                    {
+                      label: 'Anglia ',
+                      value: '3'
+                    },
+                    {
+                      label: 'Germania ',
+                      value: '4'
+                    },
+                    {
+                      label: 'Spania ',
+                      value: '5'
+                    },
+                    {
+                      label: 'Brazilia ',
+                      value: '6'
+                    },
+                    {
+                      label: 'Argentina',
+                      value: '7'
+                    },
+                    {
+                      label: 'Belgia ',
+                      value: '8'
+                    },
+                    {
+                      label: 'Olanda ',
+                      value: '9'
+                    },
+                    {
+                      label: 'Portugalia ',
+                      value: '10'
+                    }
+                  ]
+                },
+                key: 'echipaNationala',
+                type: 'select',
+                input: true
+              },
+              {
+                type: 'button',
+                label: 'Insert',
+                key: 'submit',
+                disableOnInvalid: true,
+                input: true,
+                tableView: false
+              }
+            ]
+          }"
+          (submit)="onUpdateJucator($event)"
+        ></formio>
+       
+      </div>
+    </div>
+    <div class="col-sm">
+      <h1>DELETE</h1>
+      <formio
+        [form]="{
+          display: 'form',
+          components: [
+            {
+              label: 'Selectati tabelul:',
+              widget: 'choicesjs',
+              tableView: true,
+              data: {
+                values: [
+                  {
+                    label: 'Antrenor',
+                    value: 'antrenorD'
+                  },
+                  {
+                    label: 'Jucator',
+                    value: 'jucatorD'
+                  }
+                ]
+              },
+              key: 'selectatiTabelul',
+              type: 'select',
+              input: true
+            },
+            {
+              type: 'button',
+              label: 'Selectati',
+              key: 'submit',
+              disableOnInvalid: true,
+              input: true,
+              tableView: false
+            }
+          ]
+        }"
+        (submit)="onSelect($event)"
+      ></formio>
+      <div *ngIf="selectatiTabelul == 'jucatorD'">
+        <formio
+          [form]="{
+            display: 'form',
+
+            components: [
+              {
+                label: 'Nume Jucator',
+                tableView: true,
+                key: 'numeJucator',
+                type: 'textfield',
+                input: true
+              },
+              {
+                type: 'button',
+                label: 'Stergeti',
+                key: 'submit',
+                disableOnInvalid: true,
+                input: true,
+                tableView: false
+              }
+            ]
+          }"
+          (submit)="onDeleteJucator($event)"
+        ></formio>
+      </div>
+      <div *ngIf="selectatiTabelul == 'antrenorD'">
+        <formio
+          [form]="{
+            display: 'form',
+
+            components: [
+              {
+                label: 'Nume Antrenor',
+                tableView: true,
+                key: 'numeAntrenor',
+                type: 'textfield',
+                input: true
+              },
+              {
+                type: 'button',
+                label: 'Stergeti',
+                key: 'submit',
+                disableOnInvalid: true,
+                input: true,
+                tableView: false
+              }
+            ]
+          }"
+          (submit)="onDeleteAntrenor($event)"
+        ></formio>
+      </div>
+    </div>
+  </div>
+</div>

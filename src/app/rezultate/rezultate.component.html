@@ -1,0 +1,26 @@
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th></th>
+        <th scope="col">Gazde</th>
+        <th scope="col">Scor</th>
+        <th scope="col">Oaspeti</th>
+        <th scope="col">Detalii</th>
+      </tr>
+    </thead>
+    <tbody>
+  <tr *ngFor="let item of rezultate; index as i">
+    <td>{{ i + 1 }}</td>
+    <td>{{ item.numeGazda }} </td>
+    <td>
+        
+    {{ item.goluriGazda }} -
+    {{ item.goluriOaspeti }}
+
+    </td>
+    <td>{{ item.numeOaspeti }}</td>
+    <td><button type="button" class="btn btn-light" (click)="fetchStadion(item.id) ">Vezi detalii</button></td>
+  </tr>
+
+  </table>
+<H3 *ngIf = "stadion!=null" class = "centered"> Meciul s-a disputat pe {{stadion.denumire}} in {{stadion.locatie}} si au marcat {{marcatori}} !</H3>

@@ -1,0 +1,157 @@
+<!-- <button (click)= "onSubmitEchipa('Romania')" >insert</button> -->
+
+ <div class = "container">
+  <div class="row">
+    <div class="col-sm">
+      <formio
+        [form]="{
+          display: 'form',
+
+          components: [
+            {
+              label: 'Selectati echipa al carei lot doriti sa il vizualizati:',
+              widget: 'choicesjs',
+              tableView: true,
+              data: {
+                values: [
+                  {
+                    label: 'Romania',
+                    value: 'Romania'
+                  },
+                  {
+                    label: 'Anglia',
+                    value: 'Anglia'
+                  },
+                  {
+                    label: 'Spania',
+                    value: 'Spania'
+                  },
+                  {
+                    label: 'Germania',
+                    value: 'Germania'
+                  },
+                  {
+                    label: 'Franta',
+                    value: 'Franta'
+                  },
+                  {
+                    label: 'Belgia',
+                    value: 'Belgia'
+                  },
+                  {
+                    label: 'Brazilia',
+                    value: 'Brazilia'
+                  },
+                  {
+                    label: 'Argentina',
+                    value: 'Argentina'
+                  },
+                  {
+                    label: 'Olanda',
+                    value: 'Olanda'
+                  },
+                  {
+                    label: 'Portugalia',
+                    value: 'Portugalia'
+                  }
+                ]
+              },
+              key: 'numeEchipa',
+              type: 'select',
+              input: true
+            },
+            {
+              label: 'Vizualizati',
+              showValidations: false,
+              disableOnInvalid: true,
+              tableView: false,
+              key: 'submit',
+              type: 'button',
+              input: true,
+              saveOnEnter: false
+            }
+          ]
+        }"
+        (submit)="onSubmitEchipa($event)"
+      ></formio>
+   
+  <div class="container" *ngIf="submitted">
+    <div class="row">
+      <div class="col-sm">
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th></th>
+              <th scope="col">Nume</th>
+              <th scope="col">Pozitie</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let item of response; index as i">
+              <td>{{ i + 1 }}</td>
+              <td>{{ item.numeJucator }}</td>
+              <td>{{ item.pozitie }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <h3>Antrenor: {{ coach.numeAntrenor }}</h3>
+      </div>
+
+      <div class="col-sm">
+        <H3 class="centered">Top marcatori</H3>
+        
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th></th>
+                <th scope="col">Nume</th>
+                <th scope="col">Goluri</th>
+              </tr>
+            </thead>
+            <tbody>
+          <tr *ngFor="let item of scorers; index as i">
+            <td>{{ i + 1 }}</td>
+            <td>{{ item.nume }}</td>
+            <td>{{ item.nr_goluri }}</td>
+          </tr>
+          </table>
+          <p class="centered">Stadioane vizitate: {{stadioane}}</p>
+      </div>
+    </div>
+  </div>
+    </div>
+  </div>
+
+    <div class="col-sm">
+    <formio [form] ='{
+      "display": "form",
+      
+      "components": [
+          {
+              "label": "Cauta jucator dupa nume",
+              "tableView": true,
+              "key": "numeJucator",
+              "type": "textfield",
+              "input": true
+          },
+          {
+              "label": "Cautare",
+              "showValidations": false,
+              "disableOnInvalid": true,
+              "tableView": false,
+              "key": "submit",
+              "type": "button",
+              "input": true,
+              "saveOnEnter": false
+          }
+      ]
+  }' (submit)="onSearchJucator($event)"></formio>
+   
+   <p *ngIf="player != null"> Nume: {{player.nume}}  | Pozitie: {{player.pozitie}} | Echipa: {{player.numeEchipa}} | Varsta: {{player.varsta}} | Goluri marcate la turneu: {{goluri}}
+   | Antrenor: {{antrenor.numeAntrenor}}
+   </p>
+   <p *ngIf="player == null"> Jucatorul nu a fost gasit</p>
+  </div>
+
+</div>
